@@ -6,9 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { GithubIcon } from "@/components/Icons";
 import project1 from "../../public/images/projects/Test-generator-app-project.png";
+import project2 from "../../public/images/projects/project_1.gif";
+import project3 from "../../public/images/projects/project_2.gif";
+import project4 from "../../public/images/projects/project_3.gif";
+import project5 from "../../public/images/projects/Recipe-app.png";
 const FeaturedProject = ({ type, title, summary, img, link, github }) => (
   <article className='w-full flex items-center justify-between rounded-3xl border border-solid border-dark bg-light shadow-2xl p-12 relative'>
-    <div className='absolute top-0 -right-3 -z-10 w-[101%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl' />
+    <div className='absolute top-0 -right-3 -z-10 w-[100.5%] h-[103%] rounded-[2rem] bg-dark rounded-br-3xl' />
     <Link
       href={link}
       target='_blank'
@@ -95,33 +99,55 @@ const projects = () => {
           />
           <div className='grid grid-cols-12 gap-24'>
             <div className='col-span-12 '>
-            
               <FeaturedProject
                 type='Featured Project'
-                title='Crypto Screener Application'
-                summary='A feature-rich Crypto Screener App using React, Tailwind CSS, Context API, React Router and Recharts. 
-                  It shows detail regarding almost all the cryptocurrency. You can easily convert the price in your 
-                  local currency.'
+                title='Quiz & Test generating app'
+                summary='A feature-rich Test Generating App using React, Material-Ui, Redux, React Router and more libraries. 
+                  It is an amzing app that helps teachers and educators to prepare tasks, assignments, quizes, and exams . 
+                  You can easily prepare an exam from the test bank or you can type your own questions.'
                 img={project1}
-                link='/'
-                github='/'
+                link='exam.rustamnortadzhiev.com'
+                github='https://github.com/nortadzhiev-rustam/test-bank/tree/alternative'
               />
             </div>
             <div className='col-span-6'>
               <Project
-                type='Featured Project'
-                title='Crypto Screener Application'
-                summary='A feature-rich Crypto Screener App using React, Tailwind CSS, Context API, React Router and Recharts. 
-                  It shows detail regarding almost all the cryptocurrency. You can easily convert the price in your 
-                  local currency.'
-                img={project1}
-                link='/'
-                github='/'
+                type='Project'
+                title='To-do app'
+                img={project2}
+                link='https://todo-app-280992.netlify.app/'
+                github='https://github.com/nortadzhiev-rustam/todo-app'
               />
             </div>
-            <div className='col-span-6'>Project 2</div>
-            <div className='col-span-12 '>Featured Project</div>
-            <div className='col-span-6'>Project 3</div>
+            <div className='col-span-6'>
+              {" "}
+              <Project
+                type='Project'
+                title='Pomodoro timer'
+                img={project3}
+                link='https://timer-setter.netlify.app/'
+                github='https://github.com/nortadzhiev-rustam/timer-app'
+              />
+            </div>
+            <div className='col-span-12 '>
+              <FeaturedProject
+                type='Featured Project'
+                title='School website'
+                summary='A school official website.'
+                img={project4}
+                link='https://cepi-edu.org'
+                github='#'
+              />
+            </div>
+            <div className='col-span-6'>
+              <Project
+                type='Project'
+                title='Recipe app'
+                img={project5}
+                link='#'
+                github='https://github.com/nortadzhiev-rustam/recipe-app'
+              />
+            </div>
             <div className='col-span-6'>Project 4</div>
           </div>
         </Layout>
