@@ -8,6 +8,7 @@ import AnimatedText from "@/components/AnimatedText";
 import { LinkArrow } from "@/components/Icons";
 import HireMe from '@/components/HireMe';
 import lightBulb from '../../public/images/svgs/miscellaneous_icons_1.svg'
+import Transition from '@/components/Transition';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
@@ -19,39 +20,48 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className='flex items-center text-dark min-h-screen'>
-        <Layout className='pt-0'>
-          <div className='flex items-center justify-between w-full'>
-            <div className=' w-1/3.5'>
+      <Transition/>
+      <main className='flex items-center text-dark min-h-screen dark:bg-dark dark:text-light'>
+        <Layout className='pt-0 md:pt-16 sm:pt-8'>
+          <div className='flex items-center justify-between w-full lg:flex-col'>
+            <div className=' w-1/3 md:w-full md:justify-center flex'>
               <Image
                 src={profilePic}
                 alt='RustamNortadzhiev'
-                className=' w-full h-auto'
+                className=' w-full h-auto lg:hidden md:inline-block md:w-1/2'
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
               />
             </div>
-            <div className='w-1/2 flex flex-col items-center self-center'>
+            <div className='w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center'>
               <AnimatedText
                 text='Turning Vision Into Reality With Code And Design.'
-                className='!text-6xl !text-left'
+                className='!text-6xl !text-left 
+                xl:!text-5xl lg:!text-center lg:!text-6xl md:!text-5xl sm:!text-3xl
+                '
               />
-              <p className='my-4 text-base font-medium'>
+              <p className='my-4 text-base font-medium md:text-small sm:text-xs'>
                 As a skilled full-stack developer, I am dedicated to turning
                 ideas into innovative web applications. Explore my latest
                 projects and articles, showcasing my expertise in React.js and
                 web development.
               </p>
-              <div className='flex items-center self-start mt-2'>
+              <div className='flex items-center self-start mt-2 lg:self-center'>
                 <Link
-                  href='/dummy.pdf'
-                  className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-dark'
+                  href='/My_CV.pdf'
+                  target='_blank'
+                  className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold hover:bg-light hover:text-dark border border-solid border-transparent hover:border-dark
+                  dark:bg-light dark:text-dark dark:hover:bg-dark dark:hover:text-light dark:hover:border-light
+                  md:p-2 md:px-4 md:text-base
+                  '
                 >
                   Resume
-                  <LinkArrow className='w-6 ml-1' />
+                  <LinkArrow className='w-5 ml-1' />
                 </Link>
                 <Link
                   href='mailto:rustamnortojiyev@gmail.com'
                   target={"_blank"}
-                  className='ml-4 text-lg font-medium capitalize text-dark underline'
+                  className='ml-4 text-lg font-medium capitalize text-dark dark:text-light underline md:text-base'
                 >
                   Contact
                 </Link>
@@ -61,8 +71,8 @@ export default function Home() {
         </Layout>
 
         <HireMe/>
-        <div className='absolute right-8 bottom-8 inline-block w-24'>
-          <Image src={lightBulb} alt='RustamNortadzhiev' className='w-full h-auto'/>
+        <div className='absolute right-8 bottom-8 inline-block w-24 md:hidden'>
+          <Image src={lightBulb} alt='RustamNortadzhiev' className='w-full h-auto '/>
         </div>
       </main>
     </>
