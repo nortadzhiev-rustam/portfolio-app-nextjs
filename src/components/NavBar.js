@@ -135,9 +135,9 @@ export default function NavBar() {
         `}
           >
             {mode === "dark" ? (
-              <SunIcon className='fill-dark w-5' />
+              <SunIcon className='fill-dark max-w-5 max-h-5' />
             ) : (
-              <MoonIcon className='fill-dark w-5' />
+              <MoonIcon className='fill-dark max-w-5 max-h-5' />
             )}
           </button>
         </nav>
