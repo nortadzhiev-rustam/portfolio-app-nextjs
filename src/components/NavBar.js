@@ -233,7 +233,7 @@ export default function NavBar() {
         </motion.div>
       )}
 
-      <div className='absolute left-[50%] sm:left-[40%] top-2 translate-x-[-5]'>
+      <div className='absolute left-[50%] md:left-[40%] top-2 translate-x-[-5]'>
         <Logo />
       </div>
     </header>
