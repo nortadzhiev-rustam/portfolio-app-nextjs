@@ -56,7 +56,7 @@ export default function Home() {
                   '
                 >
                   Resume
-                  <LinkArrow className='max-w-5 max-h-5 ml-1' />
+                  <LinkArrow className=' max-w-[1.25rem] max-h-5 ml-1' />
                 </Link>
                 <Link
                   href='mailto:rustamnortojiyev@gmail.com'
