@@ -1,20 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faReact,
-  faCss3Alt,
-  faHtml5,
-  faJsSquare,
-  faNode,
-  faSass,
-  faGitAlt,
-  faGithub,
-  faLinkedin,
-  faFigma,
-  faBootstrap,
-  faNodeJs,
-} from "@fortawesome/free-brands-svg-icons";
+
 
 import {
   Express,
@@ -142,7 +128,7 @@ const MobileSkill = ({ name, icon }) => {
       transition={{ duration: 0.5, type: "spring" }}
     >
       {icon}
-      <span className='text-xl font-semibold mt-0.5 ml-3 xs:hidden'>
+      <span className='text-xl font-semibold mt-0.5 ml-3 sm:hidden'>
         {name}
       </span>
     </motion.div>
