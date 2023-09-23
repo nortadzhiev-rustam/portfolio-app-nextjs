@@ -19,6 +19,8 @@ module.exports = {
         light: "#f5f5f5",
         primary: "#B63E96",
         primaryDark: "#58E6D9",
+        tarnsitionColor: "#15616d",
+        transitionColor2: '#10002b'
       },
       animation: {
         "spin-slow": "spin 10s linear infinite",
