@@ -11,6 +11,7 @@ import project3 from "../../public/images/projects/project_2.gif";
 import project4 from "../../public/images/projects/project_3.gif";
 import project5 from "../../public/images/projects/Recipe-app.png";
 import project6 from "../../public/images/projects/React Native project.png";
+import project7 from "../../public/images/projects/QuranApp.png";
 import { motion } from "framer-motion";
 import Transition from "@/components/Transition";
 
@@ -137,9 +138,7 @@ const projects = () => {
               <FeaturedProject
                 type='Featured Project'
                 title='Quiz & Test generating app'
-                summary='A feature-rich Test Generating App using React, Material-Ui, Redux, React Router and more libraries. 
-                  It is an amzing app that helps teachers and educators to prepare tasks, assignments, quizes, and exams . 
-                  You can easily prepare an exam from the test bank or you can type your own questions.'
+                summary='A comprehensive test generation platform built with React, Material-UI, Redux, and React Router. This application empowers teachers and educators to efficiently create tasks, assignments, quizzes, and exams. Features include a rich test bank for quick exam preparation, custom question creation, and intuitive exam management. Deployed in production and actively used by educators.'
                 img={project1}
                 link='https://exam.rustamnortadzhiev.com'
                 github='https://github.com/nortadzhiev-rustam/test-bank/tree/alternative'
@@ -168,10 +167,20 @@ const projects = () => {
               <FeaturedProject
                 type='Featured Project'
                 title='School website'
-                summary='A school official website.'
+                summary='Official school website featuring comprehensive information about the educational institution, programs, faculty, and student resources. Built with modern web technologies to provide an engaging user experience.'
                 img={project4}
                 link='https://cepi-edu.org'
                 github='#'
+              />
+            </div>
+            <div className='col-span-12 '>
+              <FeaturedProject
+                type='Featured Project'
+                title='QuranApp - Mobile Quran Reader'
+                summary='A cross-platform Quran reading application built with Expo and React Native. Features include multilingual translations (English, Russian, Turkish), bookmarks with local persistence, advanced search functionality, Tajweed color highlighting for proper recitation rules, and theme customization (auto/light/dark mode). Designed for daily Quran reading with educational support.'
+                img={project7}
+                link='https://github.com/nortadzhiev-rustam/QuranApp'
+                github='https://github.com/nortadzhiev-rustam/QuranApp'
               />
             </div>
             <div className='col-span-6 md:col-span-12'>
