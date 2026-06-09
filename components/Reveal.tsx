@@ -5,11 +5,10 @@ interface RevealProps {
   children: React.ReactNode;
   className?: string;
   delay?: "d1" | "d2";
-  tag?: keyof JSX.IntrinsicElements;
 }
 
-export default function Reveal({ children, className = "", delay, tag: Tag = "div" }: RevealProps) {
-  const ref = useRef<HTMLElement>(null);
+export default function Reveal({ children, className = "", delay }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -29,8 +28,8 @@ export default function Reveal({ children, className = "", delay, tag: Tag = "di
 
   const cls = ["fade", delay ?? "", className].filter(Boolean).join(" ");
   return (
-    <Tag ref={ref as React.RefObject<HTMLDivElement>} className={cls}>
+    <div ref={ref} className={cls}>
       {children}
-    </Tag>
+    </div>
   );
 }
