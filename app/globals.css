@@ -458,7 +458,9 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
   .preview { display: none; }
   .exp-row { grid-template-columns: 1fr; gap: 0.3rem; }
   .exp-row .place { text-align: left; }
-  .stats { grid-template-columns: 1fr; gap: 1.8rem; }
+  .stats { grid-template-columns: repeat(3,1fr); gap: 1rem; }
+  .stat .num { font-size: clamp(1.8rem,7vw,2.6rem); }
+  .stat .label { font-size: 0.75rem; }
   .hero-top { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
 }
 @media (max-width: 540px) {
