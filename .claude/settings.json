@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"console.log\\(require\\('/Users/admin/Developer/portfolio-app-nextjs/node_modules/framer-motion/package.json'\\).version\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/admin/Developer/portfolio-app-nextjs/public/images/R.jpeg)",
+      "Bash(sips -Z 512 /Users/admin/Developer/portfolio-app-nextjs/public/images/R.jpeg --out /Users/admin/Developer/portfolio-app-nextjs/app/icon.jpeg)",
+      "Bash(sips -Z 180 /Users/admin/Developer/portfolio-app-nextjs/public/images/R.jpeg --out /Users/admin/Developer/portfolio-app-nextjs/app/apple-icon.jpeg)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{content_type}\\\\n\" http://localhost:3000/icon.jpeg)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

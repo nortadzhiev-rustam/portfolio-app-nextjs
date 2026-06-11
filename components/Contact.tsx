@@ -1,18 +1,26 @@
+import Reveal from "./Reveal";
+
 export default function Contact() {
   return (
     <section className="section contact" id="contact">
       <div className="wrap">
-        <span className="eyebrow mono fade">05 — Contact</span>
-        <h2 className="big fade d1">
-          Let&apos;s build something <em>worth opening.</em>
-        </h2>
-        <a
-          className="email-link fade d1"
-          href="mailto:rustamnortadzhiev@gmail.com"
-        >
-          rustamnortadzhiev@gmail.com <span className="arr">↗</span>
-        </a>
-        <div className="socials fade d1">
+        <Reveal>
+          <span className="eyebrow mono">05 — Contact</span>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <h2 className="big">
+            Let&apos;s build something <em>worth opening.</em>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.14}>
+          <a
+            className="email-link"
+            href="mailto:rustamnortadzhiev@gmail.com"
+          >
+            rustamnortadzhiev@gmail.com <span className="arr">↗</span>
+          </a>
+        </Reveal>
+        <Reveal className="socials" delay={0.2}>
           <a
             className="social"
             href="https://github.com/nortadzhiev-rustam"
@@ -32,7 +40,7 @@ export default function Contact() {
           <a className="social" href="mailto:rustamnortadzhiev@gmail.com">
             Email ↗
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

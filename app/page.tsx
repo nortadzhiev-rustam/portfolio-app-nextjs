@@ -6,13 +6,13 @@ import Stack from "@/components/Stack";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import RevealInit from "@/components/RevealInit";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Nav />
-      <RevealInit />
       <main>
         <Hero />
         <About />

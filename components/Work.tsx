@@ -1,43 +1,37 @@
 "use client";
-import { useRef, useState, useCallback } from "react";
-import Reveal from "./Reveal";
+import { useCallback, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import Reveal, { EASE } from "./Reveal";
 import { PROJECTS } from "@/lib/data";
 
+const previewVariants = {
+  hide: { opacity: 0, scale: 0.85, x: "-50%", y: "-50%" },
+  show: { opacity: 1, scale: 1, x: "-50%", y: "-50%" },
+};
+
 export default function Work() {
-  const previewRef = useRef<HTMLDivElement>(null);
-  const phRef = useRef<HTMLDivElement>(null);
   const [label, setLabel] = useState("");
-  const px = useRef(0);
-  const py = useRef(0);
-  const tx = useRef(0);
-  const ty = useRef(0);
-  const rafId = useRef<number | null>(null);
+  const [active, setActive] = useState(false);
 
-  const loop = useCallback(() => {
-    px.current += (tx.current - px.current) * 0.14;
-    py.current += (ty.current - py.current) * 0.14;
-    const el = previewRef.current;
-    if (el) {
-      el.style.transform = `translate(calc(${px.current}px - 50%), calc(${py.current}px - 50%))`;
-    }
-    rafId.current = requestAnimationFrame(loop);
-  }, []);
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const springX = useSpring(cursorX, { stiffness: 160, damping: 22, mass: 0.6 });
+  const springY = useSpring(cursorY, { stiffness: 160, damping: 22, mass: 0.6 });
 
-  const onMouseMove = useCallback((e: React.MouseEvent) => {
-    tx.current = e.clientX;
-    ty.current = e.clientY;
-  }, []);
+  const onMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+    },
+    [cursorX, cursorY]
+  );
 
   const onEnter = useCallback((lbl: string) => {
     setLabel(lbl);
-    previewRef.current?.classList.add("show");
-    if (!rafId.current) loop();
-  }, [loop]);
-
-  const onLeave = useCallback(() => {
-    previewRef.current?.classList.remove("show");
-    if (rafId.current) { cancelAnimationFrame(rafId.current); rafId.current = null; }
+    setActive(true);
   }, []);
+
+  const onLeave = useCallback(() => setActive(false), []);
 
   const openProject = useCallback((url?: string) => {
     if (url) window.open(url, "_blank", "noopener,noreferrer");
@@ -51,7 +45,7 @@ export default function Work() {
             <Reveal>
               <span className="eyebrow mono">01 — Selected Work</span>
             </Reveal>
-            <Reveal delay="d1">
+            <Reveal delay={0.08}>
               <h2 className="sec-title">
                 Things I&apos;ve designed, built &amp; <em>shipped</em>.
               </h2>
@@ -60,9 +54,13 @@ export default function Work() {
 
           <div className="work-list">
             {PROJECTS.map((p, i) => (
-              <article
+              <motion.article
                 key={p.name}
-                className={`project fade${p.url ? "" : " no-link"}`}
+                className={`project${p.url ? "" : " no-link"}`}
+                initial={{ opacity: 0, y: 26 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.16, margin: "0px 0px -8% 0px" }}
+                transition={{ duration: 0.9, ease: EASE, delay: (i % 2) * 0.06 }}
                 onMouseEnter={() => onEnter(p.label)}
                 onMouseLeave={onLeave}
                 onClick={() => openProject(p.url)}
@@ -93,16 +91,24 @@ export default function Work() {
                     <path d="M7 17 17 7M9 7h8v8" />
                   </svg>
                 </span>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Cursor-following preview */}
-      <div className="preview" ref={previewRef} style={{ left: 0, top: 0 }}>
-        <div className="ph" ref={phRef} data-label={label} />
-      </div>
+      {/* Cursor-following preview, driven by motion springs */}
+      <motion.div className="preview-anchor" style={{ x: springX, y: springY }}>
+        <motion.div
+          className="preview"
+          variants={previewVariants}
+          initial="hide"
+          animate={active ? "show" : "hide"}
+          transition={{ duration: 0.35, ease: EASE }}
+        >
+          <div className="ph" data-label={label} />
+        </motion.div>
+      </motion.div>
     </>
   );
 }

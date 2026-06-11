@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import { EASE } from "./Reveal";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -13,9 +16,16 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className={`nav${scrolled ? " scrolled" : ""}`}>
+    <motion.nav
+      className={`nav${scrolled ? " scrolled" : ""}`}
+      initial={{ y: -72, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: EASE, delay: 0.2 }}
+    >
       <a className="brand" href="#top">
-        <span className="mark">R</span>
+        <span className="mark">
+          <Image src="/images/R.jpeg" alt="" width={34} height={34} />
+        </span>
         <span>
           Rustam Nortadzhiev
           <span className="brand-loc"> — Dushanbe</span>
@@ -33,6 +43,6 @@ export default function Nav() {
         <ThemeToggle />
         <a className="nav-cta" href="#contact">Get in touch</a>
       </div>
-    </nav>
+    </motion.nav>
   );
 }

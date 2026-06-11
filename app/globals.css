@@ -103,6 +103,16 @@ a { color: inherit; text-decoration: none; }
   background: var(--accent);
 }
 
+/* ---------- SCROLL PROGRESS ---------- */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--accent);
+  transform-origin: 0 50%;
+  z-index: 110;
+}
+
 /* ---------- NAV ---------- */
 .nav {
   position: fixed;
@@ -128,10 +138,11 @@ a { color: inherit; text-decoration: none; }
   display: grid; place-items: center;
   width: 34px; height: 34px;
   border: 1px solid var(--line-strong); border-radius: 50%;
-  font-family: var(--font-display); font-size: 1.05rem; letter-spacing: -0.02em;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease), transform 0.5s var(--ease);
+  overflow: hidden;
+  transition: border-color 0.3s var(--ease), transform 0.5s var(--ease);
 }
-.brand:hover .mark { background: var(--accent); color: var(--on-accent); transform: rotate(-8deg); }
+.brand .mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brand:hover .mark { border-color: var(--accent); transform: rotate(-8deg); }
 .brand .brand-loc { color: var(--muted); }
 
 .nav-links { display: flex; align-items: center; gap: 2rem; }
@@ -206,16 +217,9 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
 }
 .hero h1 em { font-style: italic; color: var(--accent); }
 
-/* line reveal */
+/* line reveal — motion driven */
 .hero-line { display: block; }
-.hero-line-inner {
-  display: block;
-  transform: translateY(0.5em); opacity: 0;
-  transition: transform 0.95s var(--ease), opacity 0.95s var(--ease);
-}
-.hero-line-inner.line1 { transition-delay: 0.05s; }
-.hero-line-inner.line2 { transition-delay: 0.18s; }
-.hero.revealed .hero-line-inner { transform: translateY(0); opacity: 1; }
+.hero-line-inner { display: block; }
 
 .hero-bottom {
   display: flex; justify-content: space-between; align-items: flex-end;
@@ -258,6 +262,50 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
   50%  { transform: translateY(0); }
   100% { transform: translateY(100%); }
 }
+
+/* hero accent underline — drawn in by framer-motion (pathLength) */
+.hero-em { position: relative; display: inline-block; }
+.hero-underline {
+  position: absolute; left: 0; bottom: -0.12em;
+  width: 100%; height: 0.14em;
+  overflow: visible; pointer-events: none;
+}
+
+/* rotating circular badge */
+.hero-badge {
+  position: absolute; right: var(--gutter); top: 52%;
+  width: 150px; height: 150px; display: block;
+}
+.badge-spin, .badge-spin svg { width: 100%; height: 100%; display: block; }
+.badge-text {
+  font-family: var(--font-mono); font-size: 7.8px; letter-spacing: 1.05px;
+  fill: var(--muted); transition: fill 0.3s var(--ease);
+}
+.hero-badge:hover .badge-text { fill: var(--ink); }
+.badge-core {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  transition: transform 0.4s var(--ease);
+}
+.badge-avatar {
+  width: 92px; height: 92px; border-radius: 50%;
+  object-fit: cover; display: block;
+}
+.hero-badge:hover .badge-core { transform: scale(1.08); }
+@media (max-width: 1100px), (max-height: 720px) {
+  .hero-badge { display: none; }
+}
+
+/* print registration marks */
+.hero-mark {
+  position: absolute; color: var(--muted);
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1;
+  user-select: none; pointer-events: none;
+}
+.hero-mark.tl { top: 5rem; left: var(--gutter); }
+.hero-mark.tr { top: 5rem; right: var(--gutter); }
+.hero-mark.bl { bottom: 1.6rem; left: var(--gutter); }
+.hero-mark.br { bottom: 1.6rem; right: var(--gutter); }
+@media (max-width: 880px) { .hero-mark { display: none; } }
 
 /* ---------- SECTION HEADER ---------- */
 .sec-head { display: grid; gap: 1.4rem; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
@@ -328,16 +376,15 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
 .project:hover .p-name { color: var(--accent); transform: translateX(0.4rem); }
 .project:hover .p-arrow { opacity: 1; transform: translateY(-50%) translateX(-0.5rem) scale(1); }
 
-/* cursor preview */
-.preview {
+/* cursor preview — position & show/hide driven by framer-motion */
+.preview-anchor {
   position: fixed; top: 0; left: 0; z-index: 60;
+  pointer-events: none;
+}
+.preview {
   width: 280px; height: 360px; border-radius: 18px; overflow: hidden;
-  pointer-events: none; opacity: 0;
-  transform: translate(-50%,-50%) scale(0.85);
-  transition: opacity 0.3s var(--ease), transform 0.4s var(--ease);
   box-shadow: var(--shadow); border: 1px solid var(--line-strong);
 }
-.preview.show { opacity: 1; transform: translate(-50%,-50%) scale(1); }
 .ph {
   width: 100%; height: 100%;
   background: repeating-linear-gradient(135deg, var(--paper-2) 0 14px, var(--paper-3) 14px 28px);
@@ -357,12 +404,8 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
   padding-block: clamp(1.4rem,3vw,2.2rem);
   overflow: hidden;
 }
-.marquee-track {
-  display: flex; gap: 3.5rem; width: max-content;
-  animation: scrollx 32s linear infinite;
-}
-.marquee:hover .marquee-track { animation-play-state: paused; }
-@keyframes scrollx { to { transform: translateX(-50%); } }
+/* track movement is driven by framer-motion (scroll-velocity aware) */
+.marquee-track { display: flex; gap: 3.5rem; width: max-content; }
 .marquee-item {
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(1.8rem,4vw,3rem); white-space: nowrap;
@@ -433,17 +476,11 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
 }
 .footer .heart { color: var(--accent); }
 
-/* ---------- REVEAL ---------- */
-.fade { opacity: 0; transform: translateY(26px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
-.fade.in { opacity: 1; transform: none; }
-.fade.d1 { transition-delay: 0.08s; }
-.fade.d2 { transition-delay: 0.16s; }
-
-/* ---------- REDUCED MOTION ---------- */
+/* ---------- REDUCED MOTION ----------
+   framer-motion animations respect this via <MotionConfig reducedMotion="user">;
+   the rules below cover the remaining pure-CSS animations. */
 @media (prefers-reduced-motion: reduce) {
-  .hero-line-inner { transform: none !important; opacity: 1 !important; transition: none !important; }
-  .fade { opacity: 1 !important; transform: none !important; }
-  .marquee-track, .scroll-hint .sh-line::after, .status .dot { animation: none !important; }
+  .scroll-hint .sh-line::after, .status .dot { animation: none !important; }
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -455,7 +492,7 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
   .project { grid-template-columns: 2.5rem 1fr; }
   .p-meta { grid-column: 1 / -1; padding-left: 2.5rem; }
   .p-arrow { display: none; }
-  .preview { display: none; }
+  .preview-anchor { display: none; }
   .exp-row { grid-template-columns: 1fr; gap: 0.3rem; }
   .exp-row .place { text-align: left; }
   .stats { grid-template-columns: repeat(3,1fr); gap: 1rem; }

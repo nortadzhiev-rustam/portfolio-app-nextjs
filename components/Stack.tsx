@@ -1,4 +1,5 @@
 import Marquee from "./Marquee";
+import Reveal from "./Reveal";
 import { STACK_CORE, STACK_TOOLING } from "@/lib/data";
 
 export default function Stack() {
@@ -8,13 +9,17 @@ export default function Stack() {
       <section className="section" id="stack">
         <div className="wrap">
           <div className="sec-head">
-            <span className="eyebrow mono fade">03 — Toolkit</span>
-            <h2 className="sec-title fade d1">
-              The stack I reach for <em>every day</em>.
-            </h2>
+            <Reveal>
+              <span className="eyebrow mono">03 — Toolkit</span>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="sec-title">
+                The stack I reach for <em>every day</em>.
+              </h2>
+            </Reveal>
           </div>
           <div className="stack-grid">
-            <div className="stack-col fade">
+            <Reveal className="stack-col">
               <h3>Core</h3>
               {STACK_CORE.map((row) => (
                 <div className="stack-row" key={row.k}>
@@ -22,8 +27,8 @@ export default function Stack() {
                   <span className="v">{row.v}</span>
                 </div>
               ))}
-            </div>
-            <div className="stack-col fade d1">
+            </Reveal>
+            <Reveal className="stack-col" delay={0.08}>
               <h3>Backend &amp; Tooling</h3>
               {STACK_TOOLING.map((row) => (
                 <div className="stack-row" key={row.k}>
@@ -31,7 +36,7 @@ export default function Stack() {
                   <span className="v">{row.v}</span>
                 </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

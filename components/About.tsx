@@ -1,3 +1,4 @@
+import Reveal from "./Reveal";
 import StatCounter from "./StatCounter";
 import { STATS } from "@/lib/data";
 
@@ -5,16 +6,18 @@ export default function About() {
   return (
     <section className="section" id="about">
       <div className="wrap">
-        <div className="sec-head fade">
+        <Reveal className="sec-head">
           <span className="eyebrow mono">02 — About</span>
-        </div>
+        </Reveal>
 
         <div className="about-grid">
-          <p className="about-statement fade">
-            I build the kind of apps people{" "}
-            <em>actually enjoy</em> using — fluid, fast, and quietly thoughtful.
-          </p>
-          <div className="about-body fade d1">
+          <Reveal>
+            <p className="about-statement">
+              I build the kind of apps people{" "}
+              <em>actually enjoy</em> using — fluid, fast, and quietly thoughtful.
+            </p>
+          </Reveal>
+          <Reveal className="about-body" delay={0.08}>
             <p>
               I&apos;m Rustam, a React Native developer based in Dushanbe,
               Tajikistan. I specialise in Expo — shipping cross-platform apps
@@ -29,21 +32,18 @@ export default function About() {
               Currently freelancing and open to product work, contracts, and
               collaborations.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         <div className="stats">
           {STATS.map((s, i) => (
-            <div
-              key={s.label}
-              className={`stat fade${i === 1 ? " d1" : i === 2 ? " d2" : ""}`}
-            >
+            <Reveal key={s.label} className="stat" delay={i * 0.08}>
               <div className="num">
                 <StatCounter to={s.to} />
                 <span className="plus">+</span>
               </div>
               <div className="label">{s.label}</div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
