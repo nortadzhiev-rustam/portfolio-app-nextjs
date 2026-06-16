@@ -473,6 +473,12 @@ html.dark .toggle .knob { transform: translateX(28px); background: var(--accent)
   transition: color 0.35s var(--ease);
 }
 
+.skill-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .skill-card:hover .skill-icon { color: var(--accent); }
 
 .skill-name {

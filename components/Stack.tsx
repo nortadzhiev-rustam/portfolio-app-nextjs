@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import Marquee from "./Marquee";
-import Reveal from "./Reveal";
-import { EASE } from "./Reveal";
+import Reveal, { EASE } from "./Reveal";
 
 // ── Real brand icons from Simple Icons (simpleicons.org) — fill="currentColor" viewBox="0 0 24 24"
 
