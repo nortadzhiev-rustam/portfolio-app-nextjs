@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import Image from "next/image";
 import Reveal, { EASE } from "./Reveal";
 import { PROJECTS } from "@/lib/data";
 
@@ -11,6 +12,7 @@ const previewVariants = {
 
 export default function Work() {
   const [label, setLabel] = useState("");
+  const [image, setImage] = useState<string | undefined>(undefined);
   const [active, setActive] = useState(false);
 
   const cursorX = useMotionValue(0);
@@ -26,8 +28,9 @@ export default function Work() {
     [cursorX, cursorY]
   );
 
-  const onEnter = useCallback((lbl: string) => {
+  const onEnter = useCallback((lbl: string, img?: string) => {
     setLabel(lbl);
+    setImage(img);
     setActive(true);
   }, []);
 
@@ -61,7 +64,7 @@ export default function Work() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.16, margin: "0px 0px -8% 0px" }}
                 transition={{ duration: 0.9, ease: EASE, delay: (i % 2) * 0.06 }}
-                onMouseEnter={() => onEnter(p.label)}
+                onMouseEnter={() => onEnter(p.label, p.image)}
                 onMouseLeave={onLeave}
                 onClick={() => openProject(p.url)}
                 role={p.url ? "link" : undefined}
@@ -106,7 +109,17 @@ export default function Work() {
           animate={active ? "show" : "hide"}
           transition={{ duration: 0.35, ease: EASE }}
         >
-          <div className="ph" data-label={label} />
+          <div className="ph" data-label={image ? undefined : label}>
+            {image && (
+              <Image
+                src={image}
+                alt=""
+                fill
+                sizes="280px"
+                className="ph-img"
+              />
+            )}
+          </div>
         </motion.div>
       </motion.div>
     </>

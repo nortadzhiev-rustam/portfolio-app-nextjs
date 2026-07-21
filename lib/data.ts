@@ -6,6 +6,7 @@ export const PROJECTS = [
     label: "EduNova SIS — school platform",
     note: "BFI · Paragon ISC · Atlantic ISC",
     status: "shipped" as const,
+    image: "/images/projects/edunova-sis.png",
   },
   {
     name: "Naqshlab",
@@ -14,6 +15,7 @@ export const PROJECTS = [
     label: "Naqshlab — print-on-demand",
     url: "https://github.com/nortadzhiev-rustam/naqshlab",
     status: "in-progress" as const,
+    image: "/images/projects/naqshlab.png",
   },
   {
     name: "QuranApp",
@@ -22,6 +24,7 @@ export const PROJECTS = [
     label: "QuranApp — Quran reader",
     url: "https://github.com/nortadzhiev-rustam/QuranApp",
     status: "in-progress" as const,
+    image: "/images/projects/quranapp.png",
   },
   {
     name: "Andarz",
@@ -30,6 +33,7 @@ export const PROJECTS = [
     label: "Andarz — education platform",
     url: "https://andarz-web.vercel.app",
     status: "shipped" as const,
+    image: "/images/projects/andarz-web.png",
   },
   {
     name: "Andarz App",
@@ -37,6 +41,7 @@ export const PROJECTS = [
     tags: ["Expo", "React Native", "Expo Router", "TypeScript", "Reanimated"],
     label: "Andarz App — school portal",
     status: "in-progress" as const,
+    image: "/images/projects/andarz-app.png",
   },
   {
     name: "Mecenate",
@@ -45,6 +50,7 @@ export const PROJECTS = [
     label: "Mecenate — content feed",
     url: "https://github.com/nortadzhiev-rustam/mecenate-test-app",
     status: "shipped" as const,
+    image: "/images/projects/mecenate.png",
   },
 ];
 
