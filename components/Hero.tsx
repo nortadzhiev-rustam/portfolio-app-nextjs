@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import HeroBadge from "./HeroBadge";
 import { EASE } from "./Reveal";
+import type { Dictionary } from "@/lib/i18n";
 
 const MARK_POSITIONS = ["tl", "tr", "bl", "br"] as const;
 
@@ -15,7 +16,7 @@ const lineVariants = {
   }),
 };
 
-export default function Hero() {
+export default function Hero({ t }: { t: Dictionary["hero"] }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -35,9 +36,9 @@ export default function Hero() {
         >
           <span className="status">
             <span className="dot" />
-            Available for projects — 2026
+            {t.status}
           </span>
-          <span className="mono">Portfolio / Vol.01</span>
+          <span className="mono">{t.volume}</span>
         </motion.div>
 
         <h1>
@@ -49,7 +50,7 @@ export default function Hero() {
               animate="visible"
               custom={0}
             >
-              Mobile apps that
+              {t.line1}
             </motion.span>
           </span>
           <span className="hero-line">
@@ -61,7 +62,7 @@ export default function Hero() {
               custom={1}
             >
               <em className="hero-em">
-                feel effortless.
+                {t.line2}
                 <svg
                   className="hero-underline"
                   viewBox="0 0 300 20"
@@ -92,20 +93,17 @@ export default function Hero() {
         >
           <div className="hero-actions">
             <a className="btn btn-solid" href="#work">
-              View work <span className="arr">↗</span>
+              {t.viewWork} <span className="arr">↗</span>
             </a>
             <a className="btn btn-ghost" href="#contact">
-              Get in touch
+              {t.getInTouch}
             </a>
           </div>
-          <p className="hero-blurb">
-            React Native &amp; Expo developer crafting fast, native-feeling apps
-            with motion that lands just right.
-          </p>
+          <p className="hero-blurb">{t.blurb}</p>
         </motion.div>
       </motion.div>
 
-      <HeroBadge />
+      <HeroBadge text={t.badgeText} ariaLabel={t.badgeAria} />
 
       {MARK_POSITIONS.map((pos, i) => (
         <motion.span
@@ -126,7 +124,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1 }}
       >
-        <span>Scroll</span>
+        <span>{t.scroll}</span>
         <span className="sh-line" />
       </motion.div>
     </header>

@@ -3,9 +3,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { EASE } from "./Reveal";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
-export default function Nav() {
+export default function Nav({
+  t,
+  locale,
+}: {
+  t: Dictionary["nav"];
+  locale: Locale;
+}) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -28,20 +36,21 @@ export default function Nav() {
         </span>
         <span>
           Rustam Nortadzhiev
-          <span className="brand-loc"> — Dushanbe</span>
+          <span className="brand-loc">{t.location}</span>
         </span>
       </a>
 
       <div className="nav-links">
-        <a href="#work"><span className="num">01</span>Work</a>
-        <a href="#about"><span className="num">02</span>About</a>
-        <a href="#stack"><span className="num">03</span>Stack</a>
-        <a href="#experience"><span className="num">04</span>Experience</a>
+        <a href="#work"><span className="num">01</span>{t.work}</a>
+        <a href="#about"><span className="num">02</span>{t.about}</a>
+        <a href="#stack"><span className="num">03</span>{t.stack}</a>
+        <a href="#experience"><span className="num">04</span>{t.experience}</a>
       </div>
 
       <div className="nav-right">
-        <ThemeToggle />
-        <a className="nav-cta" href="#contact">Get in touch</a>
+        <LanguageSwitcher locale={locale} label={t.language} names={t.languages} />
+        <ThemeToggle label={t.themeToggle} />
+        <a className="nav-cta" href="#contact">{t.cta}</a>
       </div>
     </motion.nav>
   );

@@ -3,16 +3,20 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { EASE } from "./Reveal";
 
-const BADGE_TEXT = "AVAILABLE FOR PROJECTS • REACT NATIVE • EXPO • ";
-
-export default function HeroBadge() {
+export default function HeroBadge({
+  text,
+  ariaLabel,
+}: {
+  text: string;
+  ariaLabel: string;
+}) {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.a
       className="hero-badge"
       href="#contact"
-      aria-label="Available for projects — get in touch"
+      aria-label={ariaLabel}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
@@ -27,7 +31,7 @@ export default function HeroBadge() {
             <path id="badge-arc" d="M60 16 a44 44 0 1 1 -0.01 0" fill="none" />
           </defs>
           <text className="badge-text">
-            <textPath href="#badge-arc">{BADGE_TEXT}</textPath>
+            <textPath href="#badge-arc">{text}</textPath>
           </text>
         </svg>
       </motion.div>

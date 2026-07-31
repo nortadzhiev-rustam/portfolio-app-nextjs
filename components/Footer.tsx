@@ -1,13 +1,16 @@
 import Clock from "./Clock";
+import type { Dictionary } from "@/lib/i18n";
 
-export default function Footer() {
+export default function Footer({ t }: { t: Dictionary["footer"] }) {
   return (
     <footer className="wrap footer">
-      <span>© 2026 Rustam Nortadzhiev</span>
+      <span>{t.copyright}</span>
       <span>
-        Built with <span className="heart">♥</span> in Dushanbe, Tajikistan
+        {t.builtPre}
+        <span className="heart">♥</span>
+        {t.builtPost}
       </span>
-      <Clock />
+      <Clock suffix={t.clockSuffix} />
     </footer>
   );
 }
