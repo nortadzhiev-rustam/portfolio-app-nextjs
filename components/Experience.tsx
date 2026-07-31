@@ -1,31 +1,37 @@
 import Reveal from "./Reveal";
 import { EXPERIENCE } from "@/lib/data";
+import type { Dictionary } from "@/lib/i18n";
 
-export default function Experience() {
+export default function Experience({ t }: { t: Dictionary["experience"] }) {
   return (
     <section className="section" id="experience">
       <div className="wrap">
         <div className="sec-head">
           <Reveal>
-            <span className="eyebrow mono">04 — Experience</span>
+            <span className="eyebrow mono">{t.eyebrow}</span>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="sec-title">
-              A short <em>history</em> of the work.
+              {t.titlePre}
+              <em>{t.titleEm}</em>
+              {t.titlePost}
             </h2>
           </Reveal>
         </div>
         <div>
-          {EXPERIENCE.map((e, i) => (
-            <Reveal key={e.yr} className="exp-row" delay={(i % 2) * 0.08}>
-              <span className="yr">{e.yr}</span>
-              <div>
-                <div className="role">{e.role}</div>
-                <div className="org">{e.org}</div>
-              </div>
-              <span className="place">{e.place}</span>
-            </Reveal>
-          ))}
+          {EXPERIENCE.map((e, i) => {
+            const item = t.items[e.id];
+            return (
+              <Reveal key={e.id} className="exp-row" delay={(i % 2) * 0.08}>
+                <span className="yr">{item.yr}</span>
+                <div>
+                  <div className="role">{item.role}</div>
+                  <div className="org">{item.org}</div>
+                </div>
+                <span className="place">{item.place}</span>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

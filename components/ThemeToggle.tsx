@@ -18,7 +18,7 @@ function MoonIcon() {
   );
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ label }: { label: string }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function ThemeToggle() {
   };
 
   return (
-    <button className="toggle" onClick={toggle} aria-label="Toggle dark mode">
+    <button className="toggle" onClick={toggle} aria-label={label}>
       <span className="knob">{dark ? <MoonIcon /> : <SunIcon />}</span>
     </button>
   );

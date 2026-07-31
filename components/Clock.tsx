@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function Clock() {
+export default function Clock({ suffix }: { suffix: string }) {
   const [time, setTime] = useState("——:——");
 
   useEffect(() => {
@@ -17,5 +17,5 @@ export default function Clock() {
     return () => clearInterval(id);
   }, []);
 
-  return <span>{time} — Dushanbe, GMT+5</span>;
+  return <span>{time}{suffix}</span>;
 }

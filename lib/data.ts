@@ -1,106 +1,80 @@
-export const PROJECTS = [
+import type { Dictionary } from "@/lib/i18n";
+
+/**
+ * Locale-independent data only. Every user-facing string (names of roles,
+ * descriptions, labels, cities…) lives in `lib/i18n/dictionaries/*` and is
+ * looked up by the `id` fields below. Proper nouns — product names, tech tags,
+ * client names — stay here because they read the same in every language.
+ */
+
+type ProjectId = keyof Dictionary["work"]["projects"];
+type ExperienceId = keyof Dictionary["experience"]["items"];
+type StatId = keyof Dictionary["about"]["stats"];
+
+export const PROJECTS: {
+  id: ProjectId;
+  name: string;
+  tags: string[];
+  note?: string;
+  url?: string;
+  status: "shipped" | "in-progress";
+  image: string;
+}[] = [
   {
+    id: "edunova-sis",
     name: "EduNova SIS",
-    desc: "Cross-platform school information system shipped for three international schools — BFI (Myanmar), Paragon ISC (Cambodia), and Atlantic ISC. Role-based dashboards for teachers, students, parents, and guardians. Firebase push notifications, OTA updates, QR pickup, multi-language, and an in-app messaging system.",
     tags: ["React Native", "Expo", "Firebase", "Expo Router", "TypeScript"],
-    label: "EduNova SIS — school platform",
     note: "BFI · Paragon ISC · Atlantic ISC",
-    status: "shipped" as const,
+    status: "shipped",
     image: "/images/projects/edunova-sis.png",
   },
   {
+    id: "naqshlab",
     name: "Naqshlab",
-    desc: "Print-on-demand storefront with an in-browser design studio — customise products on a Three.js / Konva canvas, pay via Stripe, and manage orders through a full admin panel.",
     tags: ["Next.js 16", "Three.js", "Stripe", "Konva", "TypeScript"],
-    label: "Naqshlab — print-on-demand",
     url: "https://github.com/nortadzhiev-rustam/naqshlab",
-    status: "in-progress" as const,
+    status: "in-progress",
     image: "/images/projects/naqshlab.png",
   },
   {
+    id: "quranapp",
     name: "QuranApp",
-    desc: "Cross-platform Quran reader for iOS and Android. Multilingual translations (EN / RU / TR), Tajweed colour rules, bookmarks, search, and a clean auto / light / dark reading mode.",
     tags: ["Expo", "React Native", "Expo Router", "AsyncStorage"],
-    label: "QuranApp — Quran reader",
     url: "https://github.com/nortadzhiev-rustam/QuranApp",
-    status: "in-progress" as const,
+    status: "in-progress",
     image: "/images/projects/quranapp.png",
   },
   {
+    id: "andarz-web",
     name: "Andarz",
-    desc: "Official site for Andarz LLC, an educational publisher in Tajikistan — courses, blog, auth, and a contact form with full multilingual support (EN / RU / TJ).",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "i18n"],
-    label: "Andarz — education platform",
     url: "https://andarz-web.vercel.app",
-    status: "shipped" as const,
+    status: "shipped",
     image: "/images/projects/andarz-web.png",
   },
   {
+    id: "andarz-app",
     name: "Andarz App",
-    desc: "Mobile school portal for Andarz LLC — role-based dashboards for teachers, parents, and students, with themed UI, file-based routing, and settings scaffolding. Backend integration in progress.",
     tags: ["Expo", "React Native", "Expo Router", "TypeScript", "Reanimated"],
-    label: "Andarz App — school portal",
-    status: "in-progress" as const,
+    status: "in-progress",
     image: "/images/projects/andarz-app.png",
   },
   {
+    id: "mecenate",
     name: "Mecenate",
-    desc: "Patreon-style mobile feed with real-time post updates over WebSocket, smooth list animations with Reanimated, and a polished post detail screen.",
     tags: ["React Native", "Expo", "MobX", "Reanimated", "WebSocket"],
-    label: "Mecenate — content feed",
     url: "https://github.com/nortadzhiev-rustam/mecenate-test-app",
-    status: "shipped" as const,
+    status: "shipped",
     image: "/images/projects/mecenate.png",
   },
 ];
 
-export const EXPERIENCE = [
-  {
-    yr: "2026 — Now",
-    role: "React Native Developer",
-    org: "LLC Andarz — mobile school management platform serving institutions across Central Asia.",
-    place: "Dushanbe",
-  },
-  {
-    yr: "2025 — 2026",
-    role: "Full-Stack Mobile Developer",
-    org: "EduNova Asia — built & shipped a multi-tenant SIS used by 10+ schools across 3 countries.",
-    place: "Yangon",
-  },
-  {
-    yr: "2024 — 2025",
-    role: "ICT & Computing Teacher",
-    org: "SKT International School — taught programming; managed the school SIS.",
-    place: "Yangon",
-  },
-  {
-    yr: "2022 — 2024",
-    role: "Freelance Developer",
-    org: "Self-employed — full-stack projects for schools, end to end.",
-    place: "Remote",
-  },
-  {
-    yr: "2019 — 2024",
-    role: "ICT Teacher & Developer",
-    org: "Maple Bear — programming instruction and school-wide technology integration.",
-    place: "Luanda",
-  },
-];
-
-export const STACK_CORE = [
-  { k: "React Native", v: "Expert" },
-  { k: "Expo / EAS", v: "Expert" },
-  { k: "TypeScript", v: "Expert" },
-  { k: "React / Next.js", v: "Advanced" },
-  { k: "Reanimated 3 + Gesture Handler", v: "Advanced" },
-];
-
-export const STACK_TOOLING = [
-  { k: "Node.js / Express", v: "Advanced" },
-  { k: "Firebase / Supabase", v: "Advanced" },
-  { k: "GraphQL / REST", v: "Advanced" },
-  { k: "Redux Toolkit / Zustand", v: "Advanced" },
-  { k: "Figma / Jest / Detox", v: "Comfortable" },
+export const EXPERIENCE: { id: ExperienceId }[] = [
+  { id: "andarz" },
+  { id: "edunova" },
+  { id: "skt" },
+  { id: "freelance" },
+  { id: "maplebear" },
 ];
 
 export const MARQUEE_WORDS = [
@@ -108,8 +82,8 @@ export const MARQUEE_WORDS = [
   "Firebase", "GraphQL", "Supabase", "Node.js",
 ];
 
-export const STATS = [
-  { to: 5, label: "Years building mobile" },
-  { to: 20, label: "Apps shipped to stores" },
-  { to: 12, label: "Happy clients worldwide" },
+export const STATS: { id: StatId; to: number }[] = [
+  { id: "years", to: 5 },
+  { id: "apps", to: 20 },
+  { id: "clients", to: 12 },
 ];

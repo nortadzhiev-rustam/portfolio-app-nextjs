@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Marquee from "./Marquee";
 import Reveal, { EASE } from "./Reveal";
+import type { Dictionary } from "@/lib/i18n";
 
 // ── Real brand icons from Simple Icons (simpleicons.org) — fill="currentColor" viewBox="0 0 24 24"
 
@@ -76,30 +77,32 @@ const IconFigma = () => (
 
 // ── Skill data ─────────────────────────────────────────────────────────────────
 
-type Level = "Expert" | "Advanced" | "Comfortable";
+// Skill names are product names — the level and group labels are translated.
+type Level = keyof Dictionary["stack"]["levels"];
+type Group = keyof Dictionary["stack"]["groups"];
 
 const SKILLS: {
   k: string;
   v: Level;
   icon: React.ReactNode;
-  group: "Core" | "Tooling";
+  group: Group;
 }[] = [
-  { k: "React Native",          v: "Expert",      icon: <IconReact />,      group: "Core"    },
-  { k: "Expo / EAS",            v: "Expert",      icon: <IconExpo />,       group: "Core"    },
-  { k: "TypeScript",            v: "Expert",      icon: <IconTypeScript />, group: "Core"    },
-  { k: "React / Next.js",       v: "Advanced",    icon: <IconNextjs />,     group: "Core"    },
-  { k: "Reanimated 3",          v: "Advanced",    icon: <IconReanimated />, group: "Core"    },
-  { k: "Node.js / Express",     v: "Advanced",    icon: <IconNode />,       group: "Tooling" },
-  { k: "Firebase / Supabase",   v: "Advanced",    icon: <IconFirebase />,   group: "Tooling" },
-  { k: "GraphQL / REST",        v: "Advanced",    icon: <IconGraphQL />,    group: "Tooling" },
-  { k: "Redux / Zustand",       v: "Advanced",    icon: <IconRedux />,      group: "Tooling" },
-  { k: "Figma / Jest / Detox",  v: "Comfortable", icon: <IconFigma />,      group: "Tooling" },
+  { k: "React Native",          v: "expert",      icon: <IconReact />,      group: "core"    },
+  { k: "Expo / EAS",            v: "expert",      icon: <IconExpo />,       group: "core"    },
+  { k: "TypeScript",            v: "expert",      icon: <IconTypeScript />, group: "core"    },
+  { k: "React / Next.js",       v: "advanced",    icon: <IconNextjs />,     group: "core"    },
+  { k: "Reanimated 3",          v: "advanced",    icon: <IconReanimated />, group: "core"    },
+  { k: "Node.js / Express",     v: "advanced",    icon: <IconNode />,       group: "tooling" },
+  { k: "Firebase / Supabase",   v: "advanced",    icon: <IconFirebase />,   group: "tooling" },
+  { k: "GraphQL / REST",        v: "advanced",    icon: <IconGraphQL />,    group: "tooling" },
+  { k: "Redux / Zustand",       v: "advanced",    icon: <IconRedux />,      group: "tooling" },
+  { k: "Figma / Jest / Detox",  v: "comfortable", icon: <IconFigma />,      group: "tooling" },
 ];
 
 const LEVEL_COLOR: Record<Level, string> = {
-  Expert:      "var(--accent)",
-  Advanced:    "var(--ink-soft)",
-  Comfortable: "var(--muted)",
+  expert:      "var(--accent)",
+  advanced:    "var(--ink-soft)",
+  comfortable: "var(--muted)",
 };
 
 // ── Animation variants ────────────────────────────────────────────────────────
@@ -123,7 +126,7 @@ const CARD = {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export default function Stack() {
+export default function Stack({ t }: { t: Dictionary["stack"] }) {
   return (
     <>
       <Marquee />
@@ -131,11 +134,13 @@ export default function Stack() {
         <div className="wrap">
           <div className="sec-head">
             <Reveal>
-              <span className="eyebrow mono">03 — Toolkit</span>
+              <span className="eyebrow mono">{t.eyebrow}</span>
             </Reveal>
             <Reveal delay={0.08}>
               <h2 className="sec-title">
-                The stack I reach for <em>every day</em>.
+                {t.titlePre}
+                <em>{t.titleEm}</em>
+                {t.titlePost}
               </h2>
             </Reveal>
           </div>
@@ -158,7 +163,7 @@ export default function Stack() {
                   transition: { duration: 0.28, ease: EASE },
                 }}
               >
-                <span className="skill-group">{group}</span>
+                <span className="skill-group">{t.groups[group]}</span>
 
                 <motion.div
                   className="skill-icon"
@@ -181,7 +186,7 @@ export default function Stack() {
 
                 <p className="skill-name">{k}</p>
                 <span className="skill-level" style={{ color: LEVEL_COLOR[v] }}>
-                  {v}
+                  {t.levels[v]}
                 </span>
               </motion.div>
             ))}
