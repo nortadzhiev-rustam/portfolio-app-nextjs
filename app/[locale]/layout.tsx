@@ -5,6 +5,8 @@ import {
   Hanken_Grotesk,
   JetBrains_Mono,
   Cormorant_Garamond,
+  Inter,
+  IBM_Plex_Mono,
 } from "next/font/google";
 import MotionProvider from "@/components/MotionProvider";
 import {
@@ -17,11 +19,12 @@ import {
 } from "@/lib/i18n";
 import "../globals.css";
 
-/* Hanken Grotesk and JetBrains Mono both ship Cyrillic, so RU/TJ render in the
-   same body and mono faces as English — `subsets` only governs which files get
-   preloaded, not which @font-face rules are emitted. Instrument Serif is the
-   exception: it has no Cyrillic at all (its only subsets are latin/latin-ext),
-   so the display face is swapped per locale in globals.css. */
+/* ── Latin faces: the design's typography, used as-is on the English page ──
+   Instrument Serif and Hanken Grotesk carry Latin only, so RU/TJ swap display
+   and body/UI per :lang() in globals.css (measured coverage, not assumed — a
+   declared Google subset does not mean the glyphs exist). JetBrains Mono covers
+   Russian, but none of the Tajik letters (ҳ, ҷ, ӯ, ӣ, қ, ғ), so Tajik swaps the
+   mono face while Russian keeps the original. */
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
@@ -44,11 +47,14 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-/* Display serif for the RU and TJ pages, which globals.css selects on :lang().
-   `cyrillic-ext` is the subset carrying the Tajik letters (ҳ, ҷ, ӯ, ӣ, қ, ғ);
-   without it those fall back to a system serif. Weight 400 only — every
-   --font-display rule sets font-weight: 400. `preload: false` keeps the files
-   off the English page, which never renders this face. */
+/* ── Cyrillic counterparts, selected by :lang() in globals.css ──────────────
+   All three are verified to carry the full Tajik set. `cyrillic-ext` is the
+   subset those letters live in, so it is required alongside `cyrillic`.
+   `preload: false` throughout: next/font preloads every declared subset, which
+   would make English visitors fetch Cyrillic files they never render. */
+
+// Display — stands in for Instrument Serif. Weight 400 only: every
+// --font-display rule sets font-weight: 400.
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ["cyrillic", "cyrillic-ext"],
   weight: ["400"],
@@ -58,11 +64,31 @@ const cormorantGaramond = Cormorant_Garamond({
   preload: false,
 });
 
+// Body/UI — stands in for Hanken Grotesk, matching its neutral grotesque tone.
+const inter = Inter({
+  subsets: ["cyrillic", "cyrillic-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans-cyrillic",
+  display: "swap",
+  preload: false,
+});
+
+// Mono — Tajik only. JetBrains Mono covers Russian, so RU keeps the original.
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["cyrillic", "cyrillic-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-mono-tajik",
+  display: "swap",
+  preload: false,
+});
+
 const fontVariables = [
   instrumentSerif.variable,
   hankenGrotesk.variable,
   jetbrainsMono.variable,
   cormorantGaramond.variable,
+  inter.variable,
+  ibmPlexMono.variable,
 ].join(" ");
 
 type Params = { params: Promise<{ locale: string }> };

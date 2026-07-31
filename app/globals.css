@@ -32,12 +32,21 @@
   color-scheme: light;
 }
 
-/* Instrument Serif ships no Cyrillic, so the Russian and Tajik pages swap the
-   whole display face rather than falling through per glyph — that keeps one
-   typeface per page instead of mixing two across a single headline. The body
-   and mono faces already cover Cyrillic and are shared by every locale. */
+/* ---------- Tokens : CYRILLIC FACES ----------
+   Instrument Serif and Hanken Grotesk carry Latin only, so RU/TJ swap display
+   and body/UI per token rather than falling through per glyph — that keeps one
+   typeface across a headline instead of mixing two. JetBrains Mono covers
+   Russian, but Tajik swaps mono separately for its extra letters. */
 :root:lang(ru), :root:lang(tg) {
   --font-display: var(--font-serif-cyrillic), Georgia, "Times New Roman", serif;
+  --font-ui:      var(--font-sans-cyrillic), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* JetBrains Mono covers Russian but not the Tajik letters (ҳ, ҷ, ӯ, ӣ, қ, ғ),
+   which fell back mid-word at a visibly different weight. Tajik alone swaps
+   the mono face; Russian keeps the original. */
+:root:lang(tg) {
+  --font-mono: var(--font-mono-tajik), ui-monospace, "SFMono-Regular", monospace;
 }
 
 /* ---------- Tokens : DARK ---------- */
