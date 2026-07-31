@@ -20,12 +20,11 @@ import {
 import "../globals.css";
 
 /* ── Latin faces: the design's typography, used as-is on the English page ──
-   None of the three covers the Cyrillic that RU/TJ need, so globals.css swaps
-   them per :lang(). Measured coverage, not assumed — a declared Google subset
-   does not mean the glyphs exist. Hanken Grotesk is the trap here: it lists a
-   `cyrillic-ext` subset but has no base Cyrillic at all, so Russian and Tajik
-   body text silently rendered in a system font. JetBrains Mono does cover
-   Russian, but none of the Tajik letters (ҳ, ҷ, ӯ, ӣ, қ, ғ). */
+   Instrument Serif and Hanken Grotesk carry Latin only, so RU/TJ swap display
+   and body/UI per :lang() in globals.css (measured coverage, not assumed — a
+   declared Google subset does not mean the glyphs exist). JetBrains Mono covers
+   Russian, but none of the Tajik letters (ҳ, ҷ, ӯ, ӣ, қ, ғ), so Tajik swaps the
+   mono face while Russian keeps the original. */
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: ["400"],
