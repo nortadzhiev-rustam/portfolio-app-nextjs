@@ -33,10 +33,10 @@
 }
 
 /* ---------- Tokens : CYRILLIC FACES ----------
-   The Latin typography carries no Cyrillic, so RU/TJ swap the whole face per
-   token rather than falling through per glyph — that keeps one typeface across
-   a headline instead of mixing two. Instrument Serif and Hanken Grotesk have
-   no Cyrillic at all, so both locales swap display and body. */
+   Instrument Serif and Hanken Grotesk carry Latin only, so RU/TJ swap display
+   and body/UI per token rather than falling through per glyph — that keeps one
+   typeface across a headline instead of mixing two. JetBrains Mono covers
+   Russian, but Tajik swaps mono separately for its extra letters. */
 :root:lang(ru), :root:lang(tg) {
   --font-display: var(--font-serif-cyrillic), Georgia, "Times New Roman", serif;
   --font-ui:      var(--font-sans-cyrillic), ui-sans-serif, system-ui, sans-serif;
