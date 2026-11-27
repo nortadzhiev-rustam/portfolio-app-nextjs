@@ -21,12 +21,27 @@ export const PROJECTS: {
   image: string;
 }[] = [
   {
+    id: "tahsil",
+    name: "Tahsil",
+    tags: ["Expo", "React Native", "Next.js 16", "Laravel 13", "TypeScript", "Tailwind CSS 4"],
+    status: "shipped",
+    image: "/images/projects/tahsil.png",
+  },
+  {
     id: "edunova-sis",
     name: "EduNova SIS",
     tags: ["React Native", "Expo", "Firebase", "Expo Router", "TypeScript"],
     note: "BFI · Paragon ISC · Atlantic ISC",
     status: "shipped",
     image: "/images/projects/edunova-sis.png",
+  },
+  {
+    id: "didbon",
+    name: "Didbon",
+    tags: ["Electron", "TypeScript", "WebSocket", "esbuild"],
+    url: "https://github.com/nortadzhiev-rustam/class-monitoring",
+    status: "shipped",
+    image: "/images/projects/didbon.png",
   },
   {
     id: "naqshlab",
@@ -37,12 +52,27 @@ export const PROJECTS: {
     image: "/images/projects/naqshlab.png",
   },
   {
+    id: "davom",
+    name: "Davom",
+    tags: ["Electron", "SQLite", "Node.js", "i18n"],
+    url: "https://github.com/nortadzhiev-rustam/davom",
+    status: "shipped",
+    image: "/images/projects/davom.png",
+  },
+  {
     id: "quranapp",
     name: "QuranApp",
     tags: ["Expo", "React Native", "Expo Router", "AsyncStorage"],
     url: "https://github.com/nortadzhiev-rustam/QuranApp",
     status: "in-progress",
     image: "/images/projects/quranapp.png",
+  },
+  {
+    id: "rudaki-website",
+    name: "Rudaki School",
+    tags: ["Next.js 16", "React 19", "Tailwind CSS 4", "i18n"],
+    status: "in-progress",
+    image: "/images/projects/rudaki-website.png",
   },
   {
     id: "andarz-web",
@@ -58,14 +88,6 @@ export const PROJECTS: {
     tags: ["Expo", "React Native", "Expo Router", "TypeScript", "Reanimated"],
     status: "in-progress",
     image: "/images/projects/andarz-app.png",
-  },
-  {
-    id: "mecenate",
-    name: "Mecenate",
-    tags: ["React Native", "Expo", "MobX", "Reanimated", "WebSocket"],
-    url: "https://github.com/nortadzhiev-rustam/mecenate-test-app",
-    status: "shipped",
-    image: "/images/projects/mecenate.png",
   },
 ];
 

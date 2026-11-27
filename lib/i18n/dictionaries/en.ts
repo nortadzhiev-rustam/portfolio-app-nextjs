@@ -56,17 +56,33 @@ const en = {
     titlePost: ".",
     inProgress: "In progress",
     projects: {
+      tahsil: {
+        label: "Tahsil — school information system",
+        desc: "Full school information system built as a monorepo — an Expo app for iOS and Android, a Next.js 16 web app and a Laravel 13 JSON API. Attendance, per-subject gradebooks, lesson topics and homework, a weekly timetable, behaviour notes, and class registers exported to Excel or PDF, all behind granular roles from super admin down to teacher assistant. The app ships through EAS with push notifications and over-the-air updates.",
+      },
       "edunova-sis": {
         label: "EduNova SIS — school platform",
         desc: "Cross-platform school information system shipped for three international schools — BFI (Myanmar), Paragon ISC (Cambodia), and Atlantic ISC. Role-based dashboards for teachers, students, parents, and guardians. Firebase push notifications, OTA updates, QR pickup, multi-language, and an in-app messaging system.",
+      },
+      didbon: {
+        label: "Didbon — classroom management",
+        desc: "LAN classroom-management suite for Windows and macOS, in the spirit of NetSupport School. The teacher console shows every student screen live, then streams or takes control of any one of them, locks screens with a message, broadcasts the teacher’s display, and runs chat and work hand-in — all over encrypted per-student links. Two builds: Дидбон Омӯзгор for teachers and Дидбон Хонанда for students.",
       },
       naqshlab: {
         label: "Naqshlab — print-on-demand",
         desc: "Print-on-demand storefront with an in-browser design studio — customise products on a Three.js / Konva canvas, pay via Stripe, and manage orders through a full admin panel.",
       },
+      davom: {
+        label: "Davom — follow-up tracker",
+        desc: "Offline-first follow-up tracker for groups — a digital çetele. An admin defines what to track and sets weekly goals; members fill in their week in the desktop app or from a phone over the same Wi-Fi. Reports, rankings, eight-week trends, CSV export and automatic backups, all in a single SQLite file with no internet and no accounts. English, Türkçe, O‘zbekcha and Тоҷикӣ.",
+      },
       quranapp: {
         label: "QuranApp — Quran reader",
         desc: "Cross-platform Quran reader for iOS and Android. Multilingual translations (EN / RU / TR), Tajweed colour rules, bookmarks, search, and a clean auto / light / dark reading mode.",
+      },
+      "rudaki-website": {
+        label: "Rudaki School — school website",
+        desc: "Public website for Abuabdullohi Rudaki Private School in Penjikent — home, about us, academics, admissions, news and events with a page per story, and contact. Every page exists in English, Russian and Tajik, with locale-aware redirects for visitors who arrive without one. Next.js 16 and React 19, styled with the Tahsil design system’s tokens.",
       },
       "andarz-web": {
         label: "Andarz — education platform",
@@ -75,10 +91,6 @@ const en = {
       "andarz-app": {
         label: "Andarz App — school portal",
         desc: "Mobile school portal for Andarz LLC — role-based dashboards for teachers, parents, and students, with themed UI, file-based routing, and settings scaffolding. Backend integration in progress.",
-      },
-      mecenate: {
-        label: "Mecenate — content feed",
-        desc: "Patreon-style mobile feed with real-time post updates over WebSocket, smooth list animations with Reanimated, and a polished post detail screen.",
       },
     },
   },
