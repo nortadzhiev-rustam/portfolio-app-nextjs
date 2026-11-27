@@ -23,7 +23,7 @@ export const PROJECTS: {
   {
     id: "tahsil",
     name: "Tahsil",
-    tags: ["Next.js 16", "Laravel 13", "Expo", "TypeScript", "Tailwind CSS 4"],
+    tags: ["Expo", "React Native", "Next.js 16", "Laravel 13", "TypeScript", "Tailwind CSS 4"],
     status: "shipped",
     image: "/images/projects/tahsil.png",
   },

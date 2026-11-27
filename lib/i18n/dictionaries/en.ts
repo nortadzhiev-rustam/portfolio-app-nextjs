@@ -58,7 +58,7 @@ const en = {
     projects: {
       tahsil: {
         label: "Tahsil — school information system",
-        desc: "Full school information system built as a monorepo — a Next.js 16 web app, a Laravel 13 JSON API, and an Expo app for teachers and school leaders. Attendance, per-subject gradebooks, lesson topics and homework, a weekly timetable, behaviour notes, and class registers exported to Excel or PDF, all behind granular roles from super admin down to teacher assistant.",
+        desc: "Full school information system built as a monorepo — an Expo app for iOS and Android, a Next.js 16 web app and a Laravel 13 JSON API. Attendance, per-subject gradebooks, lesson topics and homework, a weekly timetable, behaviour notes, and class registers exported to Excel or PDF, all behind granular roles from super admin down to teacher assistant. The app ships through EAS with push notifications and over-the-air updates.",
       },
       "edunova-sis": {
         label: "EduNova SIS — school platform",
